@@ -39,7 +39,4 @@ jobs:
           context: ./Backend
           file: ./Backend/Dockerfile
           push: true
-          tags: 
-            ${{ secrets.DOCKER_USERNAME }}/quiz-backend:latest
-            ${{ secrets.DOCKER_USERNAME }}/quiz-backend:${{ github.sha }}
-          
+          tags: ${{ secrets.DOCKER_USERNAME }}/quiz-backend:latest,${{ secrets.DOCKER_USERNAME }}/quiz-backend:${{ github.sha }}
