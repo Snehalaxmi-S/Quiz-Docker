@@ -3,10 +3,7 @@ package com.Exam.Backend.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -20,6 +17,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Setter
 @Getter
+@Data
 public class User implements UserDetails {
 
     @Id

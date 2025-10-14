@@ -29,9 +29,12 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-        http.csrf(csrf -> csrf.disable())
+        http.headers(headers ->
+                headers.frameOptions(frame -> frame.disable())
+        )
                 .authorizeRequests().
                 requestMatchers("/auth/login").permitAll()
+                .requestMatchers("/h2-console/**").permitAll()
                 .requestMatchers("/auth/currentUser").permitAll()
                 .requestMatchers("/user/**").permitAll()
                 .requestMatchers("/category/**").authenticated()
@@ -43,7 +46,9 @@ public class SecurityConfig {
                 .anyRequest()
                 .authenticated()
                 .and().exceptionHandling(ex -> ex.authenticationEntryPoint(point))
-                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .csrf(csrf -> csrf.disable());
+
         http.addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
