@@ -1,7 +1,7 @@
 name: Build and Push Spring Boot Docker Image
 
 on:
-  push:
+  pull_request:
     branches:
       - main
   workflow_dispatch:
